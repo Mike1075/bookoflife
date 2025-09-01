@@ -212,9 +212,18 @@ function setupEventListeners() {
 
 // 事件处理函数
 function handleStartJourney(e) {
-    e.preventDefault();
+    console.log('=== handleStartJourney 被调用 ===');
+    if (e) {
+        e.preventDefault();
+        console.log('事件已阻止默认行为');
+    }
     console.log('开始练习按钮被点击');
-    startJourney();
+    try {
+        startJourney();
+    } catch (error) {
+        console.error('startJourney 调用失败:', error);
+        alert('启动练习失败: ' + error.message);
+    }
 }
 
 function handleShowProgress(e) {
