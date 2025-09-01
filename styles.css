@@ -1191,9 +1191,10 @@ body {
     text-align: center;
     margin-bottom: 3rem;
     padding: 2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #f7faff 0%, #fbf9ff 100%);
+    border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    color: white;
+    color: var(--text-primary);
 }
 
 .practice-detail .practice-day {
