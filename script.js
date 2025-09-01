@@ -349,28 +349,28 @@ function generatePracticeContent(practice) {
         console.warn('获取详细数据失败:', error);
     }
 
+    // 优先使用详细数据，如果没有则使用基础数据
+    const displayTitle = detailedPractice ? detailedPractice.title : practice.title;
+    const displayTheme = detailedPractice ? detailedPractice.theme : practice.theme;
+    const displayQuote = detailedPractice ? detailedPractice.quote : practice.quote;
+
     return `
         <div class="practice-content">
             <div class="practice-header">
                 <div class="practice-day">第${practice.day}天</div>
-                <h2 class="practice-title">${practice.title}</h2>
-                <p class="practice-theme">${practice.theme}</p>
+                <h2 class="practice-title">${displayTitle}</h2>
+                <p class="practice-theme">${displayTheme}</p>
             </div>
 
             <div class="practice-section">
                 <h3>📖 原文摘录</h3>
-                <div class="quote">${practice.quote}</div>
-            </div>
-
-            <div class="practice-section">
-                <h3>💭 今日思考</h3>
-                <p>${practice.content}</p>
+                <div class="quote">${displayQuote}</div>
             </div>
 
             ${detailedPractice ? `
             <div class="practice-section">
                 <h3>🔍 深度解读</h3>
-                <p>${detailedPractice.interpretation}</p>
+                <div class="interpretation">${detailedPractice.interpretation.replace(/\n\n/g, '</p><p>')}</div>
             </div>
 
             <div class="practice-section">
@@ -411,6 +411,11 @@ function generatePracticeContent(practice) {
                 <p><strong>目的：</strong>${detailedPractice.lifePractice.purpose}</p>
             </div>
             ` : `
+            <div class="practice-section">
+                <h3>💭 今日思考</h3>
+                <p>${practice.content}</p>
+            </div>
+
             <div class="practice-section">
                 <h3>🧘‍♀️ 今日冥想</h3>
                 <div class="meditation-guide">
