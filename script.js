@@ -308,18 +308,7 @@ function showProgress() {
     document.getElementById('progress').scrollIntoView({ behavior: 'smooth' });
 }
 
-// 打开练习页面
-function openPractice(day) {
-    const practice = practiceData[day - 1];
-    const modal = document.getElementById('practiceModal');
-    const content = document.getElementById('practiceContent');
-    
-    content.innerHTML = generatePracticeContent(practice);
-    modal.style.display = 'block';
-    
-    // 添加键盘事件监听
-    document.addEventListener('keydown', handleModalKeydown);
-}
+// 这个函数已被下面的详细版本替代
 
 // 关闭模态框
 function closeModal() {
@@ -337,8 +326,16 @@ function handleModalKeydown(event) {
 
 // 生成练习内容
 function generatePracticeContent(practice) {
-    // 从详细数据中获取对应的练习内容
-    const detailedPractice = getDetailedPracticeData(practice.day);
+    console.log('生成练习内容，第', practice.day, '天');
+
+    // 尝试从详细数据中获取对应的练习内容
+    let detailedPractice = null;
+    try {
+        detailedPractice = getDetailedPracticeData(practice.day);
+        console.log('详细数据:', detailedPractice ? '已找到' : '未找到');
+    } catch (error) {
+        console.warn('获取详细数据失败:', error);
+    }
 
     return `
         <div class="practice-content">
@@ -351,6 +348,11 @@ function generatePracticeContent(practice) {
             <div class="practice-section">
                 <h3>📖 原文摘录</h3>
                 <div class="quote">${practice.quote}</div>
+            </div>
+
+            <div class="practice-section">
+                <h3>💭 今日思考</h3>
+                <p>${practice.content}</p>
             </div>
 
             ${detailedPractice ? `
@@ -479,31 +481,53 @@ function showError(message) {
 
 // 简化的打开练习函数
 function openPractice(day) {
-    console.log('打开第', day, '天的练习');
+    console.log('=== 开始打开第', day, '天的练习 ===');
 
     try {
+        // 检查基础数据
+        if (!practiceData || practiceData.length === 0) {
+            console.error('practiceData未定义或为空');
+            alert('练习数据未加载，请刷新页面重试');
+            return;
+        }
+
         const practice = practiceData[day - 1];
         if (!practice) {
+            console.error(`找不到第${day}天的练习数据`);
             alert(`找不到第${day}天的练习内容`);
             return;
         }
 
+        console.log('找到练习数据:', practice.title);
+
         const modal = document.getElementById('practiceModal');
         const content = document.getElementById('practiceContent');
 
-        if (!modal || !content) {
-            alert('页面元素未找到，请刷新页面重试');
+        if (!modal) {
+            console.error('找不到模态框元素');
+            alert('页面模态框未找到，请刷新页面重试');
             return;
         }
 
-        // 直接显示内容，不使用加载动画
-        content.innerHTML = generatePracticeContent(practice);
+        if (!content) {
+            console.error('找不到内容容器元素');
+            alert('页面内容容器未找到，请刷新页面重试');
+            return;
+        }
+
+        console.log('页面元素检查通过，开始生成内容');
+
+        // 生成并显示内容
+        const practiceHTML = generatePracticeContent(practice);
+        content.innerHTML = practiceHTML;
         modal.style.display = 'block';
+
+        console.log('模态框已显示');
 
         // 添加键盘事件监听
         document.addEventListener('keydown', handleModalKeydown);
 
-        console.log('练习页面已打开');
+        console.log('=== 练习页面打开成功 ===');
 
     } catch (error) {
         console.error('打开练习失败:', error);
