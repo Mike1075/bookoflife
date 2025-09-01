@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第七天：倾听内在的声音 - 自在聆听·观音之旅</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .audio-player {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .play-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        
+        .audio-info {
+            flex: 1;
+        }
+        
+        .audio-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .audio-duration {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .progress-container {
+            margin-top: 15px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: white;
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+        
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .volume-slider {
+            flex: 1;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回导航 -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <i class="fas fa-lotus"></i>
+                    <span>自在聆听</span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="../index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    返回首页
+                </a>
+            </div>
+        </nav>
+
+        <!-- 主要内容 -->
+        <main class="practice-detail">
+            <div class="practice-header">
+                <div class="practice-day">第7天</div>
+                <h1 class="practice-title">倾听内在的声音</h1>
+                <p class="practice-theme">从外在权威转向内在发现</p>
+            </div>
+
+            <!-- 音频播放器 -->
+            <div class="practice-section">
+                <h3>🎧 冥想引导音频</h3>
+                <div class="audio-player">
+                    <div class="audio-controls">
+                        <button class="play-btn" id="playBtn">
+                            <i class="fas fa-play" id="playIcon"></i>
+                        </button>
+                        <div class="audio-info">
+                            <div class="audio-title">第七天：倾听内在的声音</div>
+                            <div class="audio-duration" id="audioDuration">加载中...</div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="time-display">
+                            <span id="currentTime">00:00</span>
+                            <span id="totalTime">--:--</span>
+                        </div>
+                    </div>
+                    <div class="volume-control">
+                        <i class="fas fa-volume-down"></i>
+                        <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="70">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                </div>
+                <audio id="audioPlayer" preload="metadata">
+                    <source src="../audio/day7.MP3" type="audio/mpeg">
+                    您的浏览器不支持音频播放。
+                </audio>
+            </div>
+
+            <!-- 原文摘录 -->
+            <div class="practice-section">
+                <h3>📖 原文摘录</h3>
+                <div class="quote">
+                    "发问者：当我在听你演讲时，我似乎了解了你话中的意思，但是一离开这里，我又弄不清楚了。……克氏：你应该听自己内在的声音而不是讲者的话。若是一味听从讲者的话语，他就会变成你的权威……你要做的事就是去倾听自己的声音。……这点若是厘清了，就可以看着自己的心……"
+                </div>
+            </div>
+
+            <!-- 深度解读 -->
+            <div class="practice-section">
+                <h3>🔍 深度解读</h3>
+                <div class="interpretation">
+                    <p>这是第一周聆听练习的总结与升华，也是克氏所有教诲的最终指向：<strong>从外在的权威转向内在的发现</strong>。他明确地警告我们，不要把他本人或他的话语当作新的权威和教条。</p>
+
+                    <h4>1. 权威的危险</h4>
+                    <p>无论是古老的经典、德高望重的上师，还是克氏本人的演讲，一旦我们将其视为需要"遵从"和"信奉"的外部真理，它就变成了权威。权威会让我们停止独立的探索，转而寻求依靠和模仿。依赖权威，只会让我们变成二手的、不自由的人。</p>
+
+                    <h4>2. "内在的声音"</h4>
+                    <p>克氏所说的"内在的声音"，并非指神秘的灵感或幻听。它指的是对自我心智活动的直接、持续的觉察。这个"声音"就是你自己的思想、情绪、冲动、恐惧、欲望的流动。换言之，克氏是在说："不要只听我描述地图，请你们亲自去看你们自己的那片领地。"</p>
+
+                    <h4>3. 真正的学习</h4>
+                    <p>真正的学习，不是去记住克氏的结论，而是去掌握他所指出的"观察方法"，并将这个方法应用于自己的日常生活。当你能像聆听外部声音一样，不带评判地"聆听"自己内心的贪婪、愤怒、不安时，你就在直接向生命本身学习了。</p>
+                </div>
+            </div>
+
+            <!-- 冥想练习 -->
+            <div class="practice-section">
+                <h3>🧘‍♀️ 冥想练习：向内聆听</h3>
+                <div class="meditation-guide">
+                    <h4>准备阶段</h4>
+                    <p>安坐。今天的冥想是前六天的综合与转向。</p>
+
+                    <h4>冥想引导</h4>
+                    <div class="meditation-text">
+                        <p>在过去几天里，我们练习了聆听。我们聆听万籁，聆听寂静，聆听言语的间隙。我们学习了如何不费力地、不带屏障地聆听。</p>
+
+                        <p>现在，让我们将这份宝贵的聆听能力，带回家。带向我们的内心。</p>
+
+                        <p>请将你的觉知，从耳朵，慢慢地转向你的内在空间。</p>
+
+                        <p>你'听'到了什么？</p>
+
+                        <p>也许，你'听'到了思想的溪流，一些关于过去的回忆，一些关于未来的计划，或是一些对当下的评判……</p>
+
+                        <p>像聆听窗外的鸟鸣一样，只是聆听这些念头。不追随它，不压制它，不认同它。它只是一个'内在的声音'，一个现象。</p>
+
+                        <p>也许，你'听'到了情绪的暗流。一丝不安，一阵喜悦，或是一片平静……</p>
+
+                        <p>像感受风的吹拂一样，只是感受这份情绪。不试图延长它，也不急于摆脱它。它也只是一个'内在的声音'，一种能量的流动。</p>
+
+                        <p>克里希那穆提的声音，任何智者的声音，都只是在邀请我们去聆听这个……我们自己的声音。</p>
+
+                        <p>因为在这里，在这份对自我心智活动的直接觉察中，蕴藏着所有问题的答案。</p>
+
+                        <p>当你看清了恐惧的运作，恐惧便失去了力量。当你听见了欲望的喧嚣，你便不再是它的奴隶。</p>
+
+                        <p>所以，此刻，你不需要任何外在的引导。你唯一要做的，就是去'倾听你自己的声音'。</p>
+
+                        <p>这个聆听，就是自我认识。</p>
+                        <p>这个聆听，就是静心。</p>
+                        <p>这个聆听，就是自由的开始。</p>
+
+                        <p>让我们，一起，安静地，向内聆听……</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 生活实践 -->
+            <div class="practice-section">
+                <h3>🌱 生活实践：我的"内在天气预报"</h3>
+                <p><strong>时机：</strong>每天选择三个固定的时间点，例如：清晨醒来时、午餐后、晚上睡觉前。</p>
+                
+                <div class="practice-steps">
+                    <h4>具体步骤：</h4>
+                    <ol>
+                        <li><strong>暂停与提问：</strong>停下手中的事，闭上眼睛，在心里问自己：'此刻，我内在的天气如何？'</li>
+                        <li><strong>思想层面：</strong>思绪是像晴空一样清晰，还是像乌云密布一样混乱？</li>
+                        <li><strong>情绪层面：</strong>情绪是像微风拂面一样平静，还是像狂风暴雨一样激烈？</li>
+                        <li><strong>身体层面：</strong>身体是感觉放松舒适，还是紧绷疲惫？</li>
+                        <li><strong>只是播报，不加评判：</strong>你就像一个气象播报员，只是如实地观察并'播报'你内在的状态。关键是，不要去评判这个'天气'，只是看到它。</li>
+                    </ol>
+                </div>
+                
+                <p><strong>目的：</strong>这个练习将抽象的'倾听内在的声音'具体化、日常化。它能极大地提升我们的自我觉察能力。长期坚持，你会对自己内在的模式越来越清晰，从而能更有智慧地与自己相处。</p>
+            </div>
+
+            <!-- 导航 -->
+            <div class="practice-navigation">
+                <a href="day6.html" class="nav-btn prev">
+                    <i class="fas fa-arrow-left"></i>
+                    第六天
+                </a>
+                <a href="day8.html" class="nav-btn next">
+                    第八天
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>&copy; 2024 自在聆听·观音之旅. 愿所有众生获得内在的和平与智慧.</p>
+        </footer>
+    </div>
+
+    <!-- 音频播放控制脚本 -->
+    <script>
+        const audio = document.getElementById('audioPlayer');
+        const playBtn = document.getElementById('playBtn');
+        const playIcon = document.getElementById('playIcon');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        const currentTimeSpan = document.getElementById('currentTime');
+        const totalTimeSpan = document.getElementById('totalTime');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const audioDuration = document.getElementById('audioDuration');
+
+        let isPlaying = false;
+        let duration = 0;
+
+        // 格式化时间
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // 音频加载完成
+        audio.addEventListener('loadedmetadata', () => {
+            duration = audio.duration;
+            totalTimeSpan.textContent = formatTime(duration);
+            audioDuration.textContent = `时长: ${formatTime(duration)}`;
+        });
+
+        // 播放/暂停按钮
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                playIcon.className = 'fas fa-play';
+                isPlaying = false;
+            } else {
+                audio.play();
+                playIcon.className = 'fas fa-pause';
+                isPlaying = true;
+            }
+        });
+
+        // 更新进度
+        audio.addEventListener('timeupdate', () => {
+            if (duration > 0) {
+                const progress = (audio.currentTime / duration) * 100;
+                progressFill.style.width = `${progress}%`;
+                currentTimeSpan.textContent = formatTime(audio.currentTime);
+            }
+        });
+
+        // 点击进度条跳转
+        progressBar.addEventListener('click', (e) => {
+            const rect = progressBar.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const clickRatio = clickX / rect.width;
+            audio.currentTime = clickRatio * duration;
+        });
+
+        // 音量控制
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = e.target.value / 100;
+        });
+
+        // 设置初始音量
+        audio.volume = 0.7;
+
+        // 音频结束
+        audio.addEventListener('ended', () => {
+            playIcon.className = 'fas fa-play';
+            isPlaying = false;
+            progressFill.style.width = '0%';
+            currentTimeSpan.textContent = '00:00';
+        });
+    </script>
+</body>
+</html>

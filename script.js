@@ -248,10 +248,10 @@ function createDayCard(practice) {
     const card = document.createElement('div');
     card.className = 'day-card';
 
-    // 使用addEventListener而不是onclick
+    // 点击跳转到对应的天数页面
     card.addEventListener('click', function() {
         console.log(`点击了第${practice.day}天的卡片`);
-        openPractice(practice.day);
+        window.location.href = `days/day${practice.day}.html`;
     });
 
     // 检查完成状态
@@ -301,14 +301,14 @@ function startJourney() {
         console.log('当前应该练习第', currentDay, '天');
 
         if (currentDay <= 14) {
-            openPractice(currentDay);
+            window.location.href = `days/day${currentDay}.html`;
         } else {
             alert('恭喜您完成了14天的聆听之旅！');
         }
     } catch (error) {
         console.error('开始练习失败:', error);
         // 如果出错，直接打开第一天的练习
-        openPractice(1);
+        window.location.href = 'days/day1.html';
     }
 }
 
@@ -556,7 +556,7 @@ function openPractice(day) {
 window.startJourney = function() {
     console.log('全局startJourney被调用');
     const currentDay = getCurrentDay();
-    openPractice(currentDay);
+    window.location.href = `days/day${currentDay}.html`;
 };
 
 window.showProgress = function() {

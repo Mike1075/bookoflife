@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二天：放下心中的障碍，倾听万籁 - 自在聆听·观音之旅</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .audio-player {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .play-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        
+        .audio-info {
+            flex: 1;
+        }
+        
+        .audio-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .audio-duration {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .progress-container {
+            margin-top: 15px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: white;
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+        
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .volume-slider {
+            flex: 1;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回导航 -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <i class="fas fa-lotus"></i>
+                    <span>自在聆听</span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="../index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    返回首页
+                </a>
+            </div>
+        </nav>
+
+        <!-- 主要内容 -->
+        <main class="practice-detail">
+            <div class="practice-header">
+                <div class="practice-day">第2天</div>
+                <h1 class="practice-title">放下心中的障碍，倾听万籁</h1>
+                <p class="practice-theme">觉察聆听的屏障</p>
+            </div>
+
+            <!-- 音频播放器 -->
+            <div class="practice-section">
+                <h3>🎧 冥想引导音频</h3>
+                <div class="audio-player">
+                    <div class="audio-controls">
+                        <button class="play-btn" id="playBtn">
+                            <i class="fas fa-play" id="playIcon"></i>
+                        </button>
+                        <div class="audio-info">
+                            <div class="audio-title">第二天：放下心中的障碍，倾听万籁</div>
+                            <div class="audio-duration" id="audioDuration">加载中...</div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="time-display">
+                            <span id="currentTime">00:00</span>
+                            <span id="totalTime">--:--</span>
+                        </div>
+                    </div>
+                    <div class="volume-control">
+                        <i class="fas fa-volume-down"></i>
+                        <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="70">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                </div>
+                <audio id="audioPlayer" preload="metadata">
+                    <source src="../audio/day2.MP3" type="audio/mpeg">
+                    您的浏览器不支持音频播放。
+                </audio>
+            </div>
+
+            <!-- 原文摘录 -->
+            <div class="practice-section">
+                <h3>📖 原文摘录</h3>
+                <div class="quote">
+                    "你以何种方式在听？是不是透过自己的企图、欲望、恐惧、焦虑和各种的投射在听？……如果你是透过欲望的屏障在听，那么很显然你听到的只可能是自己的独白和自己的欲求。……只有不投射任何欲求，才能听得出声音里的意义。因此你能不能放下心中的屏障，真的去倾听万籁？"
+                </div>
+            </div>
+
+            <!-- 深度解读 -->
+            <div class="practice-section">
+                <h3>🔍 深度解读</h3>
+                <div class="interpretation">
+                    <p>在第一天的"自在聆听"基础上，克氏引导我们向内探索一个更深的层面：觉察那个正在聆听的"我"。我们并非一个纯净的接收器，我们的内在充满了各种"屏障"或"滤镜"。</p>
+
+                    <p>这个"屏障"并不仅仅指物质欲望，它包含了我们所有心理上的"想要"和"不想要"。我们想听到赞美，不想听到批评；我们想听到好消息，不想听到坏消息。当我们带着这些预设的企图去听时，我们听到的便不再是声音本身，而是"声音对我的意义"。</p>
+
+                    <p>真正的聆听，是一种"无我"的聆听。这并非要消灭自我，而是要觉察到"自我"的活动并让它暂时平息。当你放下"我想从中得到什么"的企图，你的心才会变得清澈、寂静。</p>
+                </div>
+            </div>
+
+            <!-- 冥想练习 -->
+            <div class="practice-section">
+                <h3>🧘‍♀️ 冥想练习：看见聆听的屏障</h3>
+                <div class="meditation-guide">
+                    <h4>准备阶段</h4>
+                    <p>与第一天相同，找到一个安静舒适的坐姿。先用几次深呼吸让自己安顿下来。</p>
+
+                    <h4>冥想引导</h4>
+                    <div class="meditation-text">
+                        <p>让我们再次回到聆听中……像昨天一样，让所有的声音自由地进入你的意识空间……</p>
+
+                        <p>现在，我们做一个小小的转变。在聆听的同时，也分出一小部分觉知，来观察你自己的内在反应。</p>
+
+                        <p>当一个声音出现时，例如，一阵汽车喇叭声……留意你心中升起的第一念是什么？是'真吵'的烦躁感吗？还是'哦，有车经过'的平淡标签？……不需要评判这个反应，只是清晰地看见它。这个反应，就是你内在的一道'屏障'。</p>
+
+                        <p>当一阵悦耳的鸟鸣传来……你的心是否会说'真好听'，并希望它继续？……这个'希望'，也是一道欲望的屏障。</p>
+
+                        <p>我们不是要对抗或消除这些屏障，那会制造新的冲突。我们只是温柔地、好奇地看着它们。看着'喜欢'和'不喜欢'的念头升起……看着'焦虑'或'期待'的情绪浮现……</p>
+
+                        <p>每一次你看见了一道屏障，就在看见的那一刻，它便失去了扭曲你听觉的力量。光照进来的地方，阴影就会变淡。</p>
+
+                        <p>所以，练习的全部内容就是：聆听外在的声音，同时，也'聆听'内在对声音的反应。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 生活实践 -->
+            <div class="practice-section">
+                <h3>🌱 生活实践：反应觉察</h3>
+                <p><strong>时机：</strong>在与人交谈时，尤其是在听到一个你不同意、或让你有些许情绪波动的观点时。</p>
+                
+                <div class="practice-steps">
+                    <h4>具体步骤：</h4>
+                    <ol>
+                        <li><strong>暂停：</strong>深吸一口气，克制住立即回应的冲动。</li>
+                        <li><strong>向内看：</strong>用这1-2秒钟快速地问自己：'我此刻内在的反应是什么？'</li>
+                        <li><strong>命名：</strong>在心里给这个反应一个简单的命名，例如：'哦，这是防御心'或'这是不耐烦'。</li>
+                        <li><strong>回应：</strong>然后，再带着这份对自己内在状态的觉察，去做出你的回应。</li>
+                    </ol>
+                </div>
+                
+                <p><strong>目的：</strong>这个练习能有效地训练我们看见自己沟通中的'屏障'。仅仅是觉察到这一点，就能让我们的沟通变得更有意识、更少冲突。</p>
+            </div>
+
+            <!-- 导航 -->
+            <div class="practice-navigation">
+                <a href="day1.html" class="nav-btn prev">
+                    <i class="fas fa-arrow-left"></i>
+                    第一天
+                </a>
+                <a href="day3.html" class="nav-btn next">
+                    第三天
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>&copy; 2024 自在聆听·观音之旅. 愿所有众生获得内在的和平与智慧.</p>
+        </footer>
+    </div>
+
+    <!-- 音频播放控制脚本 -->
+    <script>
+        const audio = document.getElementById('audioPlayer');
+        const playBtn = document.getElementById('playBtn');
+        const playIcon = document.getElementById('playIcon');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        const currentTimeSpan = document.getElementById('currentTime');
+        const totalTimeSpan = document.getElementById('totalTime');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const audioDuration = document.getElementById('audioDuration');
+
+        let isPlaying = false;
+        let duration = 0;
+
+        // 格式化时间
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // 音频加载完成
+        audio.addEventListener('loadedmetadata', () => {
+            duration = audio.duration;
+            totalTimeSpan.textContent = formatTime(duration);
+            audioDuration.textContent = `时长: ${formatTime(duration)}`;
+        });
+
+        // 播放/暂停按钮
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                playIcon.className = 'fas fa-play';
+                isPlaying = false;
+            } else {
+                audio.play();
+                playIcon.className = 'fas fa-pause';
+                isPlaying = true;
+            }
+        });
+
+        // 更新进度
+        audio.addEventListener('timeupdate', () => {
+            if (duration > 0) {
+                const progress = (audio.currentTime / duration) * 100;
+                progressFill.style.width = `${progress}%`;
+                currentTimeSpan.textContent = formatTime(audio.currentTime);
+            }
+        });
+
+        // 点击进度条跳转
+        progressBar.addEventListener('click', (e) => {
+            const rect = progressBar.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const clickRatio = clickX / rect.width;
+            audio.currentTime = clickRatio * duration;
+        });
+
+        // 音量控制
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = e.target.value / 100;
+        });
+
+        // 设置初始音量
+        audio.volume = 0.7;
+
+        // 音频结束
+        audio.addEventListener('ended', () => {
+            playIcon.className = 'fas fa-play';
+            isPlaying = false;
+            progressFill.style.width = '0%';
+            currentTimeSpan.textContent = '00:00';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第五天：聆听能带来自由 - 自在聆听·观音之旅</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .audio-player {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .play-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        
+        .audio-info {
+            flex: 1;
+        }
+        
+        .audio-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .audio-duration {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .progress-container {
+            margin-top: 15px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: white;
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+        
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .volume-slider {
+            flex: 1;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回导航 -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <i class="fas fa-lotus"></i>
+                    <span>自在聆听</span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="../index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    返回首页
+                </a>
+            </div>
+        </nav>
+
+        <!-- 主要内容 -->
+        <main class="practice-detail">
+            <div class="practice-header">
+                <div class="practice-day">第5天</div>
+                <h1 class="practice-title">聆听能带来自由</h1>
+                <p class="practice-theme">毫不费力的觉察</p>
+            </div>
+
+            <!-- 音频播放器 -->
+            <div class="practice-section">
+                <h3>🎧 冥想引导音频</h3>
+                <div class="audio-player">
+                    <div class="audio-controls">
+                        <button class="play-btn" id="playBtn">
+                            <i class="fas fa-play" id="playIcon"></i>
+                        </button>
+                        <div class="audio-info">
+                            <div class="audio-title">第五天：聆听能带来自由</div>
+                            <div class="audio-duration" id="audioDuration">加载中...</div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="time-display">
+                            <span id="currentTime">00:00</span>
+                            <span id="totalTime">--:--</span>
+                        </div>
+                    </div>
+                    <div class="volume-control">
+                        <i class="fas fa-volume-down"></i>
+                        <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="70">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                </div>
+                <audio id="audioPlayer" preload="metadata">
+                    <source src="../audio/day5.MP3" type="audio/mpeg">
+                    您的浏览器不支持音频播放。
+                </audio>
+            </div>
+
+            <!-- 原文摘录 -->
+            <div class="practice-section">
+                <h3>📖 原文摘录</h3>
+                <div class="quote">
+                    "如果你费力地去听，那算不算是真正的聆听？费力的本身不就是一种阻碍听觉的内在扰动吗？……聆听本身便是一种完整的行动，这种行动能够带来解脱。……若是能一边聆听，一边觉知内心的冲突与矛盾，而不形成特定的思想模式，那么内在的扰动或许能止息下来。"
+                </div>
+            </div>
+
+            <!-- 深度解读 -->
+            <div class="practice-section">
+                <h3>🔍 深度解读</h3>
+                <div class="interpretation">
+                    <p>这一天的教诲探讨了<strong>"努力"与"自由"之间的悖论关系</strong>。我们通常认为，自由和解脱需要通过艰苦的努力、修行和奋斗才能达到。而克氏彻底颠覆了这个观念，他指出：努力本身就是束缚，真正的自由源于毫不费力的觉察。</p>
+
+                    <h4>1. 努力的悖论</h4>
+                    <p>任何形式的心理努力——无论是"努力去专注"、"努力去平静"，还是"努力去爱"——都源于一个预设："当下的状态是不好的，我需要改变它。" 这个预设本身就制造了"现状"与"目标"之间的对立和冲突。</p>
+
+                    <h4>2. "完整的行动"</h4>
+                    <p>"完整的行动"意味着这个行动本身就是目的，它不导向任何未来的结果。当你"真正地聆听"时，你只是在聆听，你并不期望通过聆听获得什么。这个行动在当下这一刻就已圆满。</p>
+
+                    <h4>3. 自由的关键</h4>
+                    <p>自由的关键，不在于消灭内心的冲突和矛盾，而在于如实地看见它们。在这种纯粹的、不加干预的觉知之光下，"内在的扰动或许能止息下来"，就像阳光下的冰雪，自然消融。</p>
+                </div>
+            </div>
+
+            <!-- 冥想练习 -->
+            <div class="practice-section">
+                <h3>🧘‍♀️ 冥想练习：放下努力的艺术</h3>
+                <div class="meditation-guide">
+                    <h4>准备阶段</h4>
+                    <p>安坐，以一种尽可能放松、不勉强的姿态。让身体感觉舒适自在。</p>
+
+                    <h4>冥想引导</h4>
+                    <div class="meditation-text">
+                        <p>让我们坐在这里，首先，问问自己：我是否在'努力'地冥想？我的背是否挺得太用力？我的呼吸是否在被我暗中控制？……</p>
+
+                        <p>如果有，请轻轻地，放下这份努力。允许你的背稍微放松一点，允许你的呼吸回归它自然的节奏。今天的练习，是关于'不努力'。</p>
+
+                        <p>现在，像前几天一样，让你的心向声音敞开。</p>
+
+                        <p>当你聆听时，觉察一下，你是否在'努力地听'？是否有一个微小的声音在说'我要听得更清楚'或'我要保持专注'？</p>
+
+                        <p>看到这个'努力'的念头。它就像你手中紧握的拳头。现在，邀请你的拳头，慢慢地，一根手指一根手指地，松开。</p>
+
+                        <p>不需要把这个'努力'的念头推走。你只需看到它的存在，并停止为它注入能量。</p>
+
+                        <p>现在，将这份'不努力'的觉察，带向你内在的世界。你可能会'听'到一些念头……一些担忧……一些计划……</p>
+
+                        <p>当你听到这些内在的'噪音'时，你是否立刻就想去'努力'地把它们赶走？是否有一个'我应该要安静下来'的命令？</p>
+
+                        <p>看到这份想要改变现状的'努力'。这正是内在的扰动。</p>
+
+                        <p>今天，我们不与它战斗。我们只是看着它。看着那份烦躁，不努力变得平静。看着那份分心，不努力变得专注。</p>
+
+                        <p>只是觉知。纯粹的觉知，本身就是一种毫不费力的、完整的行动。</p>
+
+                        <p>在这份毫不费力的觉知中，你会发现，那些内在的扰动，因为失去了你与之抗争的能量，它们可能会……自己……慢慢地……平息下来。</p>
+
+                        <p>这就是聆听带来的自由。不是你赢得了自由，而是当你停止战斗时，自由本就在那里。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 生活实践 -->
+            <div class="practice-section">
+                <h3>🌱 生活实践：无为的五分钟</h3>
+                <p><strong>时机：</strong>每天找一个你可以完全独处且无事的五分钟。这五分钟不是用来完成任务的间隙，而是一段特意留出的'空白时间'。</p>
+                
+                <div class="practice-steps">
+                    <h4>具体步骤：</h4>
+                    <ol>
+                        <li><strong>不要做：</strong>不要拿起手机，不要打开电脑，不要看书，不要整理房间，甚至不要'做'冥想或正念练习。</li>
+                        <li><strong>允许做：</strong>你可以坐着，可以站着，可以看窗外，可以漫无目的地走动。</li>
+                        <li><strong>核心观察：</strong>在这五分钟里，仔细观察你内心升起的'想要去做点什么'的冲动。观察那种'无聊感'，那种'我应该利用这段时间做点有用的事'的焦虑。</li>
+                        <li><strong>不回应：</strong>看到这些冲动和念头，但不去回应它们。就让那份无聊和焦虑在那里，与它待在一起，感受它。</li>
+                    </ol>
+                </div>
+                
+                <p><strong>目的：</strong>我们被'效率'和'目标导向'的文化深度制约，总是处在'努力'和'奔向某个目标'的状态中。这个练习，通过创造一个'无为'的真空地带，让我们能清晰地看到自己内在那种'停不下来的努力'的惯性。</p>
+            </div>
+
+            <!-- 导航 -->
+            <div class="practice-navigation">
+                <a href="day4.html" class="nav-btn prev">
+                    <i class="fas fa-arrow-left"></i>
+                    第四天
+                </a>
+                <a href="day6.html" class="nav-btn next">
+                    第六天
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>&copy; 2024 自在聆听·观音之旅. 愿所有众生获得内在的和平与智慧.</p>
+        </footer>
+    </div>
+
+    <!-- 音频播放控制脚本 -->
+    <script>
+        const audio = document.getElementById('audioPlayer');
+        const playBtn = document.getElementById('playBtn');
+        const playIcon = document.getElementById('playIcon');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        const currentTimeSpan = document.getElementById('currentTime');
+        const totalTimeSpan = document.getElementById('totalTime');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const audioDuration = document.getElementById('audioDuration');
+
+        let isPlaying = false;
+        let duration = 0;
+
+        // 格式化时间
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // 音频加载完成
+        audio.addEventListener('loadedmetadata', () => {
+            duration = audio.duration;
+            totalTimeSpan.textContent = formatTime(duration);
+            audioDuration.textContent = `时长: ${formatTime(duration)}`;
+        });
+
+        // 播放/暂停按钮
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                playIcon.className = 'fas fa-play';
+                isPlaying = false;
+            } else {
+                audio.play();
+                playIcon.className = 'fas fa-pause';
+                isPlaying = true;
+            }
+        });
+
+        // 更新进度
+        audio.addEventListener('timeupdate', () => {
+            if (duration > 0) {
+                const progress = (audio.currentTime / duration) * 100;
+                progressFill.style.width = `${progress}%`;
+                currentTimeSpan.textContent = formatTime(audio.currentTime);
+            }
+        });
+
+        // 点击进度条跳转
+        progressBar.addEventListener('click', (e) => {
+            const rect = progressBar.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const clickRatio = clickX / rect.width;
+            audio.currentTime = clickRatio * duration;
+        });
+
+        // 音量控制
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = e.target.value / 100;
+        });
+
+        // 设置初始音量
+        audio.volume = 0.7;
+
+        // 音频结束
+        audio.addEventListener('ended', () => {
+            playIcon.className = 'fas fa-play';
+            isPlaying = false;
+            progressFill.style.width = '0%';
+            currentTimeSpan.textContent = '00:00';
+        });
+    </script>
+</body>
+</html>
