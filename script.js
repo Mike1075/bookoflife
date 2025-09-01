@@ -1,3 +1,46 @@
+// 简单的测试函数
+function testOpenModal() {
+    console.log('testOpenModal 被调用');
+    const modal = document.getElementById('practiceModal');
+    const content = document.getElementById('practiceContent');
+
+    if (!modal) {
+        alert('找不到模态框！');
+        return;
+    }
+
+    if (!content) {
+        alert('找不到内容容器！');
+        return;
+    }
+
+    content.innerHTML = `
+        <div style="padding: 2rem; text-align: center;">
+            <h2>测试成功！</h2>
+            <p>这是第1天的练习内容测试</p>
+            <h3>📖 原文摘录</h3>
+            <div style="background: #f0f0f0; padding: 1rem; margin: 1rem 0; border-radius: 8px;">
+                你可曾安静地坐着，既不专注于任何事物，也不费劲地集中注意力，而是非常安详地坐在那里？
+            </div>
+            <button onclick="closeModal()" style="padding: 10px 20px; background: #2c5aa0; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                关闭
+            </button>
+        </div>
+    `;
+
+    modal.style.display = 'block';
+    console.log('模态框应该已经显示');
+}
+
+// 简单的关闭函数
+function closeModal() {
+    console.log('关闭模态框');
+    const modal = document.getElementById('practiceModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
 // 检查数据是否已加载
 function checkDataLoaded() {
     if (typeof detailedPracticeData === 'undefined') {
