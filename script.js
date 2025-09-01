@@ -139,35 +139,61 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('初始化失败:', error);
             alert('网站初始化失败，请刷新页面重试。');
         }
-    }, 100);
+    }, 500); // 增加等待时间
+});
+
+// 备用初始化方法
+window.addEventListener('load', function() {
+    console.log('Window load event triggered');
+
+    // 如果DOMContentLoaded没有正确初始化，这里作为备用
+    setTimeout(() => {
+        const startBtn = document.getElementById('startJourneyBtn');
+        if (startBtn && !startBtn.hasAttribute('data-initialized')) {
+            console.log('备用初始化启动');
+            setupEventListeners();
+        }
+    }, 1000);
 });
 
 // 设置事件监听器
 function setupEventListeners() {
+    console.log('开始设置事件监听器...');
+
     // 为开始练习按钮添加事件监听
     const startBtn = document.getElementById('startJourneyBtn');
     if (startBtn) {
-        startBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('开始练习按钮被点击');
-            startJourney();
-        });
+        // 移除可能存在的旧事件监听器
+        startBtn.removeEventListener('click', handleStartJourney);
+        startBtn.addEventListener('click', handleStartJourney);
+        startBtn.setAttribute('data-initialized', 'true');
         console.log('开始练习按钮事件已绑定');
     } else {
         console.error('找不到开始练习按钮');
+        // 尝试通过类名查找
+        const startBtnByClass = document.querySelector('.btn-primary');
+        if (startBtnByClass) {
+            startBtnByClass.removeEventListener('click', handleStartJourney);
+            startBtnByClass.addEventListener('click', handleStartJourney);
+            console.log('通过类名找到开始练习按钮并绑定事件');
+        }
     }
 
     // 为查看进度按钮添加事件监听
     const progressBtn = document.getElementById('showProgressBtn');
     if (progressBtn) {
-        progressBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('查看进度按钮被点击');
-            showProgress();
-        });
+        progressBtn.removeEventListener('click', handleShowProgress);
+        progressBtn.addEventListener('click', handleShowProgress);
         console.log('查看进度按钮事件已绑定');
     } else {
         console.error('找不到查看进度按钮');
+        // 尝试通过类名查找
+        const progressBtnByClass = document.querySelector('.btn-secondary');
+        if (progressBtnByClass) {
+            progressBtnByClass.removeEventListener('click', handleShowProgress);
+            progressBtnByClass.addEventListener('click', handleShowProgress);
+            console.log('通过类名找到查看进度按钮并绑定事件');
+        }
     }
 
     // 为模态框外部点击添加事件监听
@@ -182,6 +208,19 @@ function setupEventListeners() {
     } else {
         console.error('找不到模态框元素');
     }
+}
+
+// 事件处理函数
+function handleStartJourney(e) {
+    e.preventDefault();
+    console.log('开始练习按钮被点击');
+    startJourney();
+}
+
+function handleShowProgress(e) {
+    e.preventDefault();
+    console.log('查看进度按钮被点击');
+    showProgress();
 }
 
 // 初始化日历
@@ -474,7 +513,7 @@ function openPractice(day) {
     }
 }
 
-// 确保关键函数在全局作用域中（用于HTML中的onclick事件）
+// 确保关键函数在全局作用域中
 window.closeModal = closeModal;
 window.startMeditation = startMeditation;
 window.showMeditationTimer = showMeditationTimer;
@@ -482,6 +521,35 @@ window.toggleTimer = toggleTimer;
 window.resetTimer = resetTimer;
 window.closeTimer = closeTimer;
 window.markCompleted = markCompleted;
+window.startJourney = startJourney;
+window.showProgress = showProgress;
+window.openPractice = openPractice;
+
+// 调试函数
+window.debugWebsite = function() {
+    console.log('=== 网站调试信息 ===');
+    console.log('practiceData:', typeof practiceData !== 'undefined' ? practiceData.length + ' days' : '未定义');
+    console.log('detailedPracticeData:', typeof detailedPracticeData !== 'undefined' ? detailedPracticeData.length + ' days' : '未定义');
+
+    const startBtn = document.getElementById('startJourneyBtn');
+    console.log('开始练习按钮:', startBtn ? '找到' : '未找到');
+
+    const modal = document.getElementById('practiceModal');
+    console.log('模态框:', modal ? '找到' : '未找到');
+
+    console.log('用户进度:', userProgress);
+    console.log('==================');
+};
+
+// 添加全局错误处理
+window.addEventListener('error', function(e) {
+    console.error('全局错误:', e.error);
+});
+
+// 添加未处理的Promise错误处理
+window.addEventListener('unhandledrejection', function(e) {
+    console.error('未处理的Promise错误:', e.reason);
+});
 
 // 开始冥想
 function startMeditation(day) {
