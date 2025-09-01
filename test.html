@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>功能测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #2c5aa0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #1e3d6f;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>14天冥想网站功能测试</h1>
+    
+    <div class="test-section">
+        <h2>数据加载测试</h2>
+        <button onclick="testDataLoading()">测试数据加载</button>
+        <div id="dataResult" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>练习数据测试</h2>
+        <button onclick="testPracticeData()">测试练习数据</button>
+        <div id="practiceResult" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>本地存储测试</h2>
+        <button onclick="testLocalStorage()">测试本地存储</button>
+        <div id="storageResult" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>跳转到主网站</h2>
+        <button onclick="window.location.href='index.html'">打开主网站</button>
+    </div>
+
+    <script src="practice-data.js"></script>
+    <script>
+        function testDataLoading() {
+            const result = document.getElementById('dataResult');
+            
+            if (typeof practiceData !== 'undefined') {
+                result.innerHTML = `✅ 基础练习数据加载成功！共${practiceData.length}天的练习。`;
+            } else {
+                result.innerHTML = '❌ 基础练习数据加载失败！';
+            }
+            
+            if (typeof detailedPracticeData !== 'undefined') {
+                result.innerHTML += `<br>✅ 详细练习数据加载成功！共${detailedPracticeData.length}天的详细内容。`;
+            } else {
+                result.innerHTML += '<br>❌ 详细练习数据加载失败！';
+            }
+        }
+        
+        function testPracticeData() {
+            const result = document.getElementById('practiceResult');
+            
+            if (typeof practiceData !== 'undefined' && practiceData.length > 0) {
+                const firstDay = practiceData[0];
+                result.innerHTML = `
+                    <strong>第1天练习数据示例：</strong><br>
+                    标题：${firstDay.title}<br>
+                    主题：${firstDay.theme}<br>
+                    引言：${firstDay.quote.substring(0, 50)}...
+                `;
+            } else {
+                result.innerHTML = '❌ 无法获取练习数据！';
+            }
+        }
+        
+        function testLocalStorage() {
+            const result = document.getElementById('storageResult');
+            
+            try {
+                // 测试写入
+                localStorage.setItem('test', 'hello');
+                const value = localStorage.getItem('test');
+                localStorage.removeItem('test');
+                
+                if (value === 'hello') {
+                    result.innerHTML = '✅ 本地存储功能正常！';
+                } else {
+                    result.innerHTML = '❌ 本地存储读取失败！';
+                }
+            } catch (error) {
+                result.innerHTML = `❌ 本地存储不可用：${error.message}`;
+            }
+        }
+        
+        // 基础练习数据（简化版）
+        const practiceData = [
+            {
+                day: 1,
+                title: "自在地聆听",
+                theme: "不带选择的觉察",
+                quote: "你可曾安静地坐着，既不专注于任何事物，也不费劲地集中注意力，而是非常安详地坐在那里？",
+                content: "第一天的练习，是通过"聆听"这个简单的入口，让我们体验到：真正的自由始于停止内在的选择与抗拒。"
+            },
+            {
+                day: 2,
+                title: "放下心中的障碍",
+                theme: "觉察聆听的屏障",
+                quote: "你以何种方式在听？是不是透过自己的企图、欲望、恐惧、焦虑和各种的投射在听？",
+                content: "第二天的功课是自我觉察的深化。它邀请我们去看，我们是如何透过自己内在的心理噪音去聆听世界的。"
+            }
+            // ... 其他天数的数据
+        ];
+        
+        // 页面加载时自动运行测试
+        window.onload = function() {
+            console.log('测试页面加载完成');
+            testDataLoading();
+        };
+    </script>
+</body>
+</html>

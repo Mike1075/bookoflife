@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自在聆听·观音之旅：14天的聆听练习</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-lotus"></i>
+                <span>自在聆听</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">首页</a>
+                <a href="#journey" class="nav-link">练习之旅</a>
+                <a href="#progress" class="nav-link">我的进度</a>
+                <a href="#about" class="nav-link">关于</a>
+            </div>
+        </nav>
+
+        <!-- 主页内容 -->
+        <main id="home" class="main-content">
+            <!-- 英雄区域 -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">自在聆听·观音之旅</h1>
+                    <p class="hero-subtitle">14天的聆听练习</p>
+                    <p class="hero-description">
+                        基于克里希那穆提《生命之书》的深度冥想练习<br>
+                        通过聆听的艺术，发现内在的宁静与智慧
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" id="startJourneyBtn">
+                            <i class="fas fa-play"></i>
+                            开始练习
+                        </button>
+                        <button class="btn btn-secondary" id="showProgressBtn">
+                            <i class="fas fa-chart-line"></i>
+                            查看进度
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="meditation-circle">
+                        <div class="inner-circle"></div>
+                        <div class="ripple"></div>
+                        <div class="ripple"></div>
+                        <div class="ripple"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 练习概览 -->
+            <section class="overview">
+                <h2 class="section-title">练习概览</h2>
+                <div class="overview-grid">
+                    <div class="overview-card">
+                        <i class="fas fa-ear-listen"></i>
+                        <h3>深度聆听</h3>
+                        <p>学习不带选择的觉察，通过聆听万籁发现内在的广阔空间</p>
+                    </div>
+                    <div class="overview-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>自我认识</h3>
+                        <p>觉察内在的屏障与冲突，通过观察而非努力获得转化</p>
+                    </div>
+                    <div class="overview-card">
+                        <i class="fas fa-infinity"></i>
+                        <h3>当下临在</h3>
+                        <p>放下"变成"的驱动，安住于"是"的完整状态</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 14天练习日历 -->
+            <section id="journey" class="journey">
+                <h2 class="section-title">14天练习之旅</h2>
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- 动态生成日历 -->
+                </div>
+            </section>
+
+            <!-- 进度跟踪 -->
+            <section id="progress" class="progress-section">
+                <h2 class="section-title">我的进度</h2>
+                <div class="progress-container">
+                    <div class="progress-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="completedDays">0</span>
+                            <span class="stat-label">已完成天数</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalMinutes">0</span>
+                            <span class="stat-label">总练习时间(分钟)</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="currentStreak">0</span>
+                            <span class="stat-label">连续练习天数</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <span class="progress-text" id="progressText">0% 完成</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 关于部分 -->
+            <section id="about" class="about">
+                <h2 class="section-title">关于这个练习</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            这个14天的聆听练习基于克里希那穆提的《生命之书》，旨在通过"聆听"这个简单而深刻的行为，
+                            引导我们发现内在的宁静与智慧。
+                        </p>
+                        <p>
+                            每一天的练习都包含：
+                        </p>
+                        <ul>
+                            <li><strong>原文摘录</strong> - 克里希那穆提的智慧话语</li>
+                            <li><strong>深度解读</strong> - 对教诲的详细阐释</li>
+                            <li><strong>冥想练习</strong> - 具体的冥想引导</li>
+                            <li><strong>生活实践</strong> - 日常生活中的小练习</li>
+                        </ul>
+                        <p>
+                            通过持续的练习，我们将学会如何真正地聆听——不仅是外在的声音，
+                            更是内在的声音，从而获得深刻的自我认识和内心的自由。
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>&copy; 2024 自在聆听·观音之旅. 愿所有众生获得内在的和平与智慧.</p>
+        </footer>
+    </div>
+
+    <!-- 练习页面模态框 -->
+    <div id="practiceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="practiceContent">
+                <!-- 动态加载练习内容 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="practice-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
