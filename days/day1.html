@@ -242,6 +242,41 @@
             progressFill.style.width = '0%';
             currentTimeSpan.textContent = '00:00';
         });
+
+        // 兼容更新循环，确保进度条在所有浏览器实时更新
+        let rafId = null;
+        function updateUI() {
+            if (duration > 0 && isFinite(duration)) {
+                const progress = (audio.currentTime / duration) * 100;
+                progressFill.style.width = `${progress}%`;
+                currentTimeSpan.textContent = formatTime(audio.currentTime);
+            }
+            if (!audio.paused && !audio.ended) {
+                rafId = requestAnimationFrame(updateUI);
+            }
+        }
+
+        audio.addEventListener('play', () => {
+            // 某些浏览器只有播放后才有 duration
+            if (!duration || !isFinite(duration)) {
+                duration = audio.duration || 0;
+                if (duration > 0) {
+                    totalTimeSpan.textContent = formatTime(duration);
+                    audioDuration.textContent = `时长: ${formatTime(duration)}`;
+                }
+            }
+            cancelAnimationFrame(rafId);
+            updateUI();
+        });
+
+        audio.addEventListener('pause', () => {
+            cancelAnimationFrame(rafId);
+        });
+
+        // 点击进度条时，立即刷新一次 UI（避免视觉延迟）
+        progressBar.addEventListener('click', () => {
+            updateUI();
+        });
     </script>
 </body>
 </html>
