@@ -35,8 +35,11 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    background: var(--bg-primary);
+    /* 让流体画布可见：由画布清屏为白色，这里透明 */
+    background: transparent;
     min-height: 100vh;
+    position: relative;
+    z-index: 1;
     box-shadow: var(--shadow-medium);
 }
 

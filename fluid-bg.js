@@ -28,7 +28,7 @@
     c.id = 'fluid-bg-canvas';
     Object.assign(c.style, {
       position: 'fixed', inset: '0', width: '100vw', height: '100vh',
-      zIndex: '-1', pointerEvents: 'none'
+      zIndex: '0', pointerEvents: 'none'
     });
     document.body.appendChild(c);
     return c;
@@ -154,7 +154,19 @@
       gl.uniform1i(advP.u.uVelocity, velocity.read.attach(0)); gl.uniform1i(advP.u.uSource, dye.read.attach(1)); gl.uniform1f(advP.u.dissipation, cfg.DENSITY_DISSIPATION); blit(dye.write); dye.swap();
     }
 
-    function render(){ gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA); gl.enable(gl.BLEND); gl.useProgram(dispP.p); if(cfg.SHADING){ gl.uniform2f(dispP.u.texelSize, 1.0/(gl.drawingBufferWidth||1), 1.0/(gl.drawingBufferHeight||1)); } gl.uniform1i(dispP.u.uTexture, dye.read.attach(0)); blit(null); }
+    function render(){
+      // clear to white for "ink in water" look
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+      gl.clearColor(1.0, 1.0, 1.0, 1.0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+      gl.enable(gl.BLEND);
+      gl.useProgram(dispP.p);
+      if(cfg.SHADING){ gl.uniform2f(dispP.u.texelSize, 1.0/(gl.drawingBufferWidth||1), 1.0/(gl.drawingBufferHeight||1)); }
+      gl.uniform1i(dispP.u.uTexture, dye.read.attach(0));
+      blit(null);
+    }
 
     function correctRadius(r){ const ar = (canvas.width||1)/(canvas.height||1); if(ar>1) r *= ar; return r; }
     function splat(x,y,dx,dy,color){ gl.useProgram(splatP.p); gl.uniform1i(splatP.u.uTarget, velocity.read.attach(0)); gl.uniform1f(splatP.u.aspectRatio, (canvas.width||1)/(canvas.height||1)); gl.uniform2f(splatP.u.point, x, y); gl.uniform3f(splatP.u.color, dx, dy, 0.0); gl.uniform1f(splatP.u.radius, correctRadius(cfg.SPLAT_RADIUS/100.0)); blit(velocity.write); velocity.swap(); gl.uniform1i(splatP.u.uTarget, dye.read.attach(0)); gl.uniform3f(splatP.u.color, color.r, color.g, color.b); blit(dye.write); dye.swap(); }
@@ -174,4 +186,3 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
   else start();
 })();
-
