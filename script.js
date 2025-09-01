@@ -298,7 +298,8 @@ function startJourney() {
         }
     } catch (error) {
         console.error('开始练习失败:', error);
-        alert('开始练习时出现错误，请刷新页面重试。');
+        // 如果出错，直接打开第一天的练习
+        openPractice(1);
     }
 }
 
@@ -476,44 +477,53 @@ function showError(message) {
     return errorHtml;
 }
 
-// 改进的打开练习函数
+// 简化的打开练习函数
 function openPractice(day) {
+    console.log('打开第', day, '天的练习');
+
     try {
         const practice = practiceData[day - 1];
         if (!practice) {
-            throw new Error(`找不到第${day}天的练习内容`);
+            alert(`找不到第${day}天的练习内容`);
+            return;
         }
 
         const modal = document.getElementById('practiceModal');
         const content = document.getElementById('practiceContent');
 
         if (!modal || !content) {
-            throw new Error('页面元素未找到');
+            alert('页面元素未找到，请刷新页面重试');
+            return;
         }
 
-        // 显示加载状态
-        content.innerHTML = showLoading();
+        // 直接显示内容，不使用加载动画
+        content.innerHTML = generatePracticeContent(practice);
         modal.style.display = 'block';
 
-        // 模拟加载延迟，让用户看到加载动画
-        setTimeout(() => {
-            try {
-                content.innerHTML = generatePracticeContent(practice);
-                // 添加键盘事件监听
-                document.addEventListener('keydown', handleModalKeydown);
-            } catch (error) {
-                content.innerHTML = showError('练习内容加载失败，请稍后重试。');
-                console.error('练习内容生成失败:', error);
-            }
-        }, 300);
+        // 添加键盘事件监听
+        document.addEventListener('keydown', handleModalKeydown);
+
+        console.log('练习页面已打开');
 
     } catch (error) {
         console.error('打开练习失败:', error);
-        alert('无法打开练习内容，请检查网络连接或刷新页面重试。');
+        alert('无法打开练习内容：' + error.message);
     }
 }
 
-// 确保关键函数在全局作用域中
+// 立即将关键函数添加到全局作用域
+window.startJourney = function() {
+    console.log('全局startJourney被调用');
+    const currentDay = getCurrentDay();
+    openPractice(currentDay);
+};
+
+window.showProgress = function() {
+    console.log('全局showProgress被调用');
+    document.getElementById('progress').scrollIntoView({ behavior: 'smooth' });
+};
+
+window.openPractice = openPractice;
 window.closeModal = closeModal;
 window.startMeditation = startMeditation;
 window.showMeditationTimer = showMeditationTimer;
@@ -521,9 +531,6 @@ window.toggleTimer = toggleTimer;
 window.resetTimer = resetTimer;
 window.closeTimer = closeTimer;
 window.markCompleted = markCompleted;
-window.startJourney = startJourney;
-window.showProgress = showProgress;
-window.openPractice = openPractice;
 
 // 调试函数
 window.debugWebsite = function() {
