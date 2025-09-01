@@ -1,22 +1,27 @@
 // 简单的测试函数
 function testOpenModal() {
     console.log('testOpenModal 被调用');
+
     const modal = document.getElementById('practiceModal');
     const content = document.getElementById('practiceContent');
 
+    console.log('modal元素:', modal);
+    console.log('content元素:', content);
+
     if (!modal) {
-        alert('找不到模态框！');
+        alert('找不到模态框！ID: practiceModal');
         return;
     }
 
     if (!content) {
-        alert('找不到内容容器！');
+        alert('找不到内容容器！ID: practiceContent');
         return;
     }
 
+    console.log('设置内容...');
     content.innerHTML = `
-        <div style="padding: 2rem; text-align: center;">
-            <h2>测试成功！</h2>
+        <div style="padding: 2rem; text-align: center; background: white; border-radius: 10px;">
+            <h2 style="color: #2c5aa0;">测试成功！</h2>
             <p>这是第1天的练习内容测试</p>
             <h3>📖 原文摘录</h3>
             <div style="background: #f0f0f0; padding: 1rem; margin: 1rem 0; border-radius: 8px;">
@@ -28,8 +33,23 @@ function testOpenModal() {
         </div>
     `;
 
+    console.log('显示模态框...');
     modal.style.display = 'block';
-    console.log('模态框应该已经显示');
+    modal.style.position = 'fixed';
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100%';
+    modal.style.height = '100%';
+    modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    modal.style.zIndex = '9999';
+
+    console.log('模态框样式已设置:', modal.style.display);
+
+    // 额外检查
+    setTimeout(() => {
+        console.log('1秒后检查模态框状态:', modal.style.display);
+        console.log('模态框是否可见:', modal.offsetWidth > 0 && modal.offsetHeight > 0);
+    }, 1000);
 }
 
 // 简单的关闭函数
